@@ -5,6 +5,9 @@
  */
 package main;
 
+import java.util.HashMap;
+import java.util.Map;
+//import java.util.Scanner;
 
 /**
  *
@@ -12,7 +15,23 @@ package main;
  */
 public class Scenario {
     
+    public Map<String, Effet> mesEffets = new HashMap<>();
+    
     public static void main(String[] args) {
-        new Effet().RainbowBlackBackground("Arc-en-ciel !");
+        Scenario sc= new Scenario();
+        //Scanner clavier = new Scanner(System.in);
+        //System.out.print("Entrez le message à afficher en arc-en-ciel : ");
+        //String msg = clavier.nextLine();
+        //EffetRainbow e =new EffetRainbow("Arc-en-ciel !");
+        sc.ajoutEffet("rainbow", new EffetRainbow("Arc-en-ciel !"));
+        sc.mesEffets.get("rainbow").activate();
+        System.out.print("Répétition plus longue");
+        sc.mesEffets.get("rainbow").setDuree(500);
+        sc.mesEffets.get("rainbow").activate();
+        sc.mesEffets.get("rainbow").fin();
+    }
+    
+    public void ajoutEffet(String name, Effet e){
+        this.mesEffets.put(name, e);
     }
 }
