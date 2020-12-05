@@ -12,62 +12,51 @@ import java.awt.Color;
  *
  * @author agath
  */
-public class EffetRainbow implements Effet {
-    
-    private Bandeau band;
-    private String message;
-    private int duree;
-    
-    public EffetRainbow(String msg){
-        this.message=msg;
-        this.band=new Bandeau();
-        duree = 250;
+public class EffetRainbow extends EffetNormal {
+
+    public EffetRainbow(String msg, Bandeau b){
+        super(msg,b);
+        this.duree=250;
     }
     
-    public EffetRainbow(String msg, int d){
-        this.message=msg;
-        this.band=new Bandeau();
-        duree = d;
+    public EffetRainbow(String msg, int d, Bandeau b){
+        super(msg, d,b);
     }
     
-    @Override
-    public void setDuree(int duree) {
-        this.duree = duree;
+    public EffetRainbow(Bandeau b){
+        super(b);
+        this.duree=250;
+        this.message="Rainbow";
     }
+    
     
     /**
      * Active l'effet rainbow
      */
     @Override
     public void activate() {
-        band.setMessage(message);
+        this.band.setMessage(message);
         band.setBackground(Color.black);
-        band.setForeground(Color.red);
-        band.sleep(duree);
-        band.setForeground(Color.orange);
-        band.sleep(duree);
-        band.setForeground(Color.yellow);
-        band.sleep(duree);
-        band.setForeground(Color.green);
-        band.sleep(duree);
-        band.setForeground(Color.cyan);
-        band.sleep(duree);
-        band.setForeground(Color.blue);
-        band.sleep(duree);
-        band.setForeground(Color.MAGENTA);
-        band.sleep(duree);
-        band.setForeground(Color.BLACK);
-
+        changeCouleur(Color.red);
+        changeCouleur(Color.orange);
+        changeCouleur(Color.yellow);
+        changeCouleur(Color.green);
+        changeCouleur(Color.cyan);
+        changeCouleur(Color.blue);
+        changeCouleur(Color.MAGENTA);
+        changeCouleur(Color.BLACK);
     }
+    
+    public void changeCouleur(Color c){
+        band.setForeground(c);
+       band.sleep(duree);
+    }
+    
     @Override
-    public void fin(){
+    public void fin() {
         this.band.close();
     }
 
-    @Override
-    public void setMessage(String s) {
-        this.message=s;
-    }
 
     
 }

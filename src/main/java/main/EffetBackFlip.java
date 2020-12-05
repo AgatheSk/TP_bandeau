@@ -6,31 +6,47 @@
 package main;
 
 import bandeau.Bandeau;
+import java.awt.Font;
 
 /**
  *
  * @author agath
  */
-public class EffetBackFlip implements Effet{
-        
-    private Bandeau band;
-    private String message;
-    private int duree;
-    
-    public EffetBackFlip(String msg){
-        this.message=msg;
-        this.band=new Bandeau();
+public class EffetBackFlip extends EffetNormal {
+
+    public EffetBackFlip(String msg, Bandeau b) {
+        super(msg, b);
+        this.duree = 300;
+    }
+
+    public EffetBackFlip(String msg, int d, Bandeau b) {
+        super(msg, d, b);
     }
     
-   public EffetBackFlip(String msg, int d){
-        this.message=msg;
-        this.band=new Bandeau();
-        duree = d;
+    public EffetBackFlip(Bandeau b) {
+        super(b);
+        this.duree = 300;
+        this.message="Back-flip";
     }
 
     @Override
     public void activate() {
         band.setMessage(message);
+        band.setFont(new Font("Times New Roman", Font.BOLD, 25));
+        band.setRotation(45);
+        band.sleep(duree);
+        band.setRotation(90);
+        band.sleep(duree);
+        band.sleep(duree);
+        band.setRotation(135);
+        band.setRotation(180);
+        band.sleep(duree);
+        band.setRotation(225);
+        band.sleep(duree);
+        band.setRotation(270);
+        band.sleep(duree);
+        band.setRotation(0);
+        band.sleep(duree);
     }
 
     @Override
@@ -38,13 +54,4 @@ public class EffetBackFlip implements Effet{
         this.band.close();
     }
 
-    @Override
-    public void setDuree(int d) {
-        this.duree=d;
-    }
-
-    @Override
-    public void setMessage(String s) {
-        this.message=s;
-    }
 }
