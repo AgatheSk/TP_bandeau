@@ -54,7 +54,7 @@ public class EffetNormal {
     public void activateRepeat(int repetition){
         this.activate();
         EffetNormal eN= new EffetNormal(band);
-        if(repetition>1){
+        if(repetition>=1){
             for (int i=1; i<=repetition; i++){
                 eN.setMessage("Répetition plus lente "+i);
                 eN.activate();
